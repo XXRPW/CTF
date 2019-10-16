@@ -1,0 +1,26 @@
+<h1>Training: Programming1</h1>
+
+<br><br>
+
+challenge:
+When you visit this link you receive a message.
+Submit the same message back to https://www.wechall.net/challenge/training/programming1/index.php?answer=the_message
+Your timelimit is 1.337 seconds
+
+This is just a simple programming challenge
+
+I used python 2.7.13 for this
+
+the code is 
+<pre>
+import requests
+cookie = {'WC': ''}
+r = requests.post('https://www.wechall.net/challenge/training/programming1/index.php?action=request', cookies=cookie)
+shell = r.text
+r = requests.post('https://www.wechall.net/challenge/training/programming1/index.php?answer='+shell,cookies=cookie)
+</pre>
+
+This requests to the link and reads the code and requests it to the other link with the read code in it
+
+then this solves the challenge
+*in the cookie, you need to put your own cookie session.
