@@ -1,0 +1,108 @@
+I'm a big newb in web so I really need to start from the basics of CTF
+
+this challenge is like the other common challenges, php.
+there's a source code link under Description and it displays "Wrong T.T"
+well I guess viewing the source code is the only way to get a hind.
+
+<html>
+<head>
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+<title>Prob18</title>
+</head>
+<body style="background-image:url('../images/content-tail.gif');">
+<b>Title</b></br>
+<i>Comming Soon</i></br></br>
+<b>Description</b></br>
+<font size="2px">
+View source</br>
+<?
+$key = "Congratulations!</br>Key is ??????????????????";
+$liillillilliliili = @$_COOKIE['c'];
+$liillillliiiliili = @$_GET['g'];
+$lilllillliiiliili = @$_POST['p'];
+if(empty($liillillilliliili) || empty($liillillliiiliili) || empty($lilllillliiiliili)){exit ('wrong T.T');}
+$lililillliiiliili = $liillillliiiliili2 . $liillillilliliili1;
+$lilililliiiiliill = $lilllillliiiliili;
+
+function test($a){
+$b = '';
+    for($i=0; $i < strlen($a); $i++){
+        $b = $b . ' - ' . ord(substr($a,$i,1));
+    }
+    return $b;
+}
+if(test($lililillliiiliili)==" - 103 - 105 - 118 - 101 - 109 - 101 - 112 - 97 - 115 - 115 - 119 - 111 - 114 - 100" || test($lilililliiiiliill) == " - 107 - 101 - 121 - 112 - 108 - 122 - 33"){
+    echo $key;
+}
+else{
+    echo 'wrong T.T';
+}
+?>
+</font>
+</body>
+</html>
+
+First it puts the value of cookie named c into $liillillilliliili and value of get in to $liillillliiiliili  and value of post in to $lilllillliiiliili 
+
+Then it adds the second variable and the first variable and make $lililillliiiliili  and then put the post value in $lilililliiiiliill 
+then there's a function called test which takes one argument. 
+The test function seems simple. it takes a string value and puts - 'first ascii code' - 'second ascii code' and goes on to the last char value because it uses strlen
+you can know it is the ascii value that returns it because it uses the ord function and substr. and ord converts a char to ascii
+
+so it uses the test value for $lililillliiiliili which is the variable that combined get+cookie and $lilililliiiiliill which is the post value but there's a or function in the middle
+so it seems like only one of them can have the right value then the challenge will be solved.
+and if you convert  - 103 - 105 - 118 - 101 - 109 - 101 - 112 - 97 - 115 - 115 - 119 - 111 - 114 - 100 this to ascii it will say givemepassword and loginplz! for  - 107 - 101 - 121 - 112 - 108 - 122 - 33
+so you need to put giveme for _GET adn passsword for _COOKIE and you can just put any value you want for POST because it is a OR function but you can put keyplz! for the _POST value
+
+so I  made a little python code for this by using requests module
+
+import requests
+cookie = {'c': 'password', 'PHPSESSID' : 'tmn58k5pscfqbpa7r3sek3s9r5'}
+
+postvalue = {'p' : 'keyplz!'}
+r = requests.post('http://xcz.kr/START/prob/prob18.php?g=giveme', data=postvalue, cookies=cookie)
+shell = r.text
+print shell
+
+
+this puts giveme for _GET and password for _COOKIE and keyplz! for post value
+
+Then it gives me 
+<html>
+
+<head>
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+
+<title>Prob18</title>
+
+</head>
+
+<body style="background-image:url('../images/content-tail.gif');">
+
+<b>Title</b></br>
+
+<i>Web Basic</i></br></br>
+
+<b>Description</b></br>
+
+<font size="2px">
+
+<a href="prob_files/prob18.html" target="_blank">View source</a></br></br>
+
+Congratulations!</br>Key is web_basic_problem_haha</font></br></br>
+
+<b>[Solver]</b></br>
+
+<font size="2px">
+
+hyoub9un</br>Detective</br>pipe</br>chada3r1</br>evernick</br>5unKn0wn</br>asdf7845120</br>cha5126568</br>gogil</br>ThreeD</br>carbon</br>humit</br>aimer88</br>qoojahwan</br>MtucX</br>hellsonic</br>sisyang</br>htkim</br>soohyun0504</br>qillar</br>50530k</br>yourface</br>dukup11ch1</br>RiF</br>jcher</br>g0n4k00</br>RExVuz</br>qpsl241</br>ogj0824</br>santoky001</br>yp01024</br>tjdyden</br>rev</br>dienstag</br>win32virus</br>skdltmxn</br>Dandelin</br>cheatreal</br>schaffen</br>st4rburst</br>ExploitSori</br>byjjoon</br>pmskylove</br>kittypops</br>ezflame</br>ijuns</br>hackmin</br>badcob</br>ssiba</br>extraship</br></font>
+
+</body>
+
+</html>
+
+Congratulations!</br>Key is web_basic_problem_haha</font></br></br> 
+and there you got! 
+the password is web_basic_problem_haha
+
