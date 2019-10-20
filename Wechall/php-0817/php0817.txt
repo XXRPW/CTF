@@ -1,0 +1,37 @@
+not sure why this challenge is under the trainingLFI challenge
+
+anyways the challenge is
+
+I have written another include system for my dynamic webpages, but it seems to be vulnerable to LFI.
+Here is the code:
+
+<?php
+if (isset($_GET['which']))
+{
+        $which = $_GET['which'];
+        switch ($which)
+        {
+        case 0:
+        case 1:
+        case 2:
+                require_once $which.'.php';
+                break;
+        default:
+                echo GWF_HTML::error('PHP-0817', 'Hacker NoNoNo!', false);
+                break;
+        }
+}
+?>
+
+Your mission is to include solution.php.
+Here is the script in action: News, Forum, Guestbook.
+
+Good Luck!
+
+this is a really simple LFI challenge 
+which will be
+index.php?which=solution
+
+and this will run solution.php which will solve the challenge
+
+easy enough??
