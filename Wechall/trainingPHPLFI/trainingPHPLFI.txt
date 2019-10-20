@@ -1,0 +1,42 @@
+Training: PHP LFI
+
+This is a simple LFI vulnerability challenge
+
+challenge:
+Your mission is to exploit this code, which has obviously an LFI vulnerability:
+
+GeSHi`ed PHP code
+1
+2
+$filename = 'pages/'.(isset($_GET["file"])?$_GET["file"]:"welcome").'.html';
+include $filename;
+
+
+There is a lot of important stuff in ../solution.php, so please include and execute this file for us.
+
+Here are a few examples of the script in action (in the box below):
+index.php?file=welcome
+index.php?file=news
+index.php?file=forums
+
+For debugging purposes, you may look at the whole source again, also as highlighted version.
+
+if you look at this code
+
+$filename = 'pages/'.(isset($_GET["file"])?$_GET["file"]:"welcome").'.html';
+include $filename;
+
+it includes the file value pafter pages/ and adds .html at the end
+
+if you click at the /solution.php which we need to run and look at the link
+https://www.wechall.net/challenge/training/php/lfi/solution.php
+
+which is two more directories upper then pages
+
+so if we use ../../ it will solve the challenge
+but it adds the .html at the end and we can solve that by putting %00 which is null and ignoring the .html
+so it will be like..
+
+https://www.wechall.net/challenge/training/php/lfi/up/index.php?file=../../solution.php%00
+
+then this solves the challenge
