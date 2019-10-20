@@ -1,0 +1,91 @@
+Training: Crypto - Transposition I
+
+challenge :
+Crypto - Transposition I
+It seems that the simple substitution ciphers are too easy for you.
+From my own experience I can tell that transposition ciphers are more difficult to attack.
+However, in this training challenge you should have not much problems to reveal the plaintext.
+
+
+oWdnreuf.lY uoc nar ae dht eemssga eaw yebttrew eh nht eelttre sra enic roertco drre . Ihtni koy uowlu dilekt  oes eoyrup sawsro don:wo mnbchslboa.p
+
+
+There's a website called
+http://tholman.com/other/transposition/
+
+and as youcan know from the first word it seems like Wonderful. 
+and if you use the website written it will give you a result of 
+
+0	1
+o	W
+d	n
+r	e
+u	f
+.	l
+Y	
+u	o
+c	
+n	a
+r	
+a	e
+d
+h	t
+e
+e	m
+s	s
+g	a
+e
+a	w
+y
+e	b
+t	t
+r	e
+w	
+e	h
+n
+h	t
+e
+e	l
+t	t
+r	e
+s
+r	a
+e
+n	i
+c	
+r	o
+e	r
+t	c
+o	
+d	r
+r	e
+.
+I
+h	t
+n	i
+k
+o	y
+u
+o	w
+l	u
+d
+i	l
+e	k
+t	
+o
+e	s
+e
+o	y
+r	u
+p	
+s	a
+w	s
+r	o
+d
+o	n
+:	w
+omnbchslboa.p
+onmcbshb1aop
+which you can read it as
+
+Wonderful. You can read the message way better when the letters are in correct order. I think you would like to see your password now: onmcbshblaop
